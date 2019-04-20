@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ssm.demo.dao.StudentMapper" >
+  <resultMap id="BaseResultMap" type="ssm.demo.entity.Student" >
+    <id column="s_sid" property="sSid" jdbcType="VARCHAR" />
+    <result column="s_name" property="sName" jdbcType="VARCHAR" />
+    <result column="s_sex" property="sSex" jdbcType="CHAR" />
+    <result column="s_number" property="sNumber" jdbcType="CHAR" />
+    <result column="s_birthday" property="sBirthday" jdbcType="DATE" />
+    <result column="s_password" property="sPassword" jdbcType="VARCHAR" />
+    <result column="s_sushehao" property="sSushehao" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    s_sid, s_name, s_sex, s_number, s_birthday, s_password, s_sushehao
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from student
+    where s_sid = #{sSid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from student
+    where s_sid = #{sSid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="ssm.demo.entity.Student" >
+    insert into student (s_sid, s_name, s_sex, 
+      s_number, s_birthday, s_password, 
+      s_sushehao)
+    values (#{sSid,jdbcType=VARCHAR}, #{sName,jdbcType=VARCHAR}, #{sSex,jdbcType=CHAR}, 
+      #{sNumber,jdbcType=CHAR}, #{sBirthday,jdbcType=DATE}, #{sPassword,jdbcType=VARCHAR}, 
+      #{sSushehao,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="ssm.demo.entity.Student" >
+    insert into student
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sSid != null" >
+        s_sid,
+      </if>
+      <if test="sName != null" >
+        s_name,
+      </if>
+      <if test="sSex != null" >
+        s_sex,
+      </if>
+      <if test="sNumber != null" >
+        s_number,
+      </if>
+      <if test="sBirthday != null" >
+        s_birthday,
+      </if>
+      <if test="sPassword != null" >
+        s_password,
+      </if>
+      <if test="sSushehao != null" >
+        s_sushehao,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sSid != null" >
+        #{sSid,jdbcType=VARCHAR},
+      </if>
+      <if test="sName != null" >
+        #{sName,jdbcType=VARCHAR},
+      </if>
+      <if test="sSex != null" >
+        #{sSex,jdbcType=CHAR},
+      </if>
+      <if test="sNumber != null" >
+        #{sNumber,jdbcType=CHAR},
+      </if>
+      <if test="sBirthday != null" >
+        #{sBirthday,jdbcType=DATE},
+      </if>
+      <if test="sPassword != null" >
+        #{sPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="sSushehao != null" >
+        #{sSushehao,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="ssm.demo.entity.Student" >
+    update student
+    <set >
+      <if test="sName != null" >
+        s_name = #{sName,jdbcType=VARCHAR},
+      </if>
+      <if test="sSex != null" >
+        s_sex = #{sSex,jdbcType=CHAR},
+      </if>
+      <if test="sNumber != null" >
+        s_number = #{sNumber,jdbcType=CHAR},
+      </if>
+      <if test="sBirthday != null" >
+        s_birthday = #{sBirthday,jdbcType=DATE},
+      </if>
+      <if test="sPassword != null" >
+        s_password = #{sPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="sSushehao != null" >
+        s_sushehao = #{sSushehao,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where s_sid = #{sSid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="ssm.demo.entity.Student" >
+    update student
+    set s_name = #{sName,jdbcType=VARCHAR},
+      s_sex = #{sSex,jdbcType=CHAR},
+      s_number = #{sNumber,jdbcType=CHAR},
+      s_birthday = #{sBirthday,jdbcType=DATE},
+      s_password = #{sPassword,jdbcType=VARCHAR},
+      s_sushehao = #{sSushehao,jdbcType=VARCHAR}
+    where s_sid = #{sSid,jdbcType=VARCHAR}
+  </update>
+</mapper>
