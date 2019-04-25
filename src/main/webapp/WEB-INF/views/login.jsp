@@ -47,6 +47,7 @@
         <!-- 学生登录结束-->
     </div>
 </div>
+<div class="bottom">©2019 Leting <a href="javascript:;" target="_blank">关于</a> <span>地信21601</span>  More Templates <a href="" target="_blank" title="">DXwnm</a> - Collect from <a href="" title="" target="_blank">dx21601</a></div>
 <div class="screenbg">
     <ul>
         <li><a href="javascript:;"><img src="${pageContext.request.contextPath}/images/0.jpg"></a></li>

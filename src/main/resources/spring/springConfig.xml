@@ -23,6 +23,11 @@
     <!-- Configures the @Controller programming model
     <mvc:annotation-driven />-->
     <!-- ②：启动Spring MVC的注解功能，完成请求和注解POJO的映射 -->
+    <!--<mvc:annotation-driven >-->
+        <!--<mvc:message-converters>-->
+            <!---->
+        <!--</mvc:message-converters>-->
+    <!--</mvc:annotation-driven>-->
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
         <property name="messageConverters">
             <list>
@@ -30,7 +35,6 @@
             </list>
         </property>
     </bean>
-
     <bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
         <property name="supportedMediaTypes">
             <list>

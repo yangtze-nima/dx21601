@@ -19,7 +19,7 @@
     from student
     where s_sid = #{sSid,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from student
     where s_sid = #{sSid,jdbcType=VARCHAR}
   </delete>
@@ -114,4 +114,15 @@
       s_sushehao = #{sSushehao,jdbcType=VARCHAR}
     where s_sid = #{sSid,jdbcType=VARCHAR}
   </update>
+  <select id="checkStudentBysid" resultType="int" parameterType="string">
+    select count(1)
+    from student
+    where s_sid=#{sid}
+  </select>
+  <select id="selectLogin" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List" />
+    from student
+    where s_sid=#{sid} and s_password=#{pwd}
+  </select>
 </mapper>

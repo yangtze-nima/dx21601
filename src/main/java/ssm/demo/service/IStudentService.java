@@ -1,5 +1,6 @@
 package ssm.demo.service;
 
+import ssm.demo.common.ServerResponse;
 import ssm.demo.entity.Student;
 
 /**
@@ -7,6 +8,5 @@ import ssm.demo.entity.Student;
  * 方法实现接口
  **/
 public interface IStudentService {
-    public Student getUserByName(String sid);
-    public int login(String s_sid, String s_password);
+    public ServerResponse<Student> login(String s_sid, String s_password);
 }

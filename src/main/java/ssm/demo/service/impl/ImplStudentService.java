@@ -2,6 +2,7 @@ package ssm.demo.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ssm.demo.common.ServerResponse;
 import ssm.demo.dao.StudentMapper;
 import ssm.demo.entity.Student;
 import ssm.demo.service.IStudentService;
@@ -13,29 +14,21 @@ import javax.security.auth.Subject;
  * 接口中方法具体实现
  * */
 
-@Service
+@Service("iStudentService")
 public class ImplStudentService implements IStudentService {
     @Autowired
-    StudentMapper studentMapper;
-
-    public void setStudentMapper(StudentMapper userMapper) {
-        this.studentMapper = userMapper;
-    }
+    private StudentMapper studentMapper;
 
     @Override
-    public Student getUserByName(String sid) {
-        return studentMapper.selectByPrimaryKey(sid);
-    }
-
-    @Override
-    public int login(String s_sid, String s_password) {
-        int code=1;
-        Student student=studentMapper.selectByPrimaryKey(s_sid);
-        if (student==null)
-            code=-1;//"用户名不存在！"
-        else if(!s_password.equals(student.getsPassword()))
-            code=0;//"密码错误！"
-        else code=1;
-        return code;
+    public ServerResponse<Student> login(String s_sid, String s_password) {
+        int code=studentMapper.checkStudentBysid(s_sid);
+        if (code==0) {
+            return ServerResponse.createByErrorMessage("用户名不存在");
+        }
+        Student student=studentMapper.selectLogin(s_sid,s_password);
+        if(student==null){
+            return ServerResponse.createByErrorMessage("密码错误");
+        }
+        return ServerResponse.createBySuccess("登陆成功",student);
     }
 }
