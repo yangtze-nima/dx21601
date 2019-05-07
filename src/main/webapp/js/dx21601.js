@@ -59,7 +59,37 @@ $(function(){
             var objtip=$(".stu_error_box");
             cssctl(objtip,o.type);
             objtip.text(msg);
-        },
-        ajaxPost:false
+        }
+    });
+    $("#login_btn").click(function () {
+        login();
     });
 });
+
+//登陆请求
+function login() {
+    var objtip=$(".stu_error_box"); //获取错误提示窗口id
+    var user={
+        "sSid":$("#stu_username_hide").val(),
+        "sPassword":$("#stu_password_hide").val()
+    };
+    $.ajax({
+        url:"../student/login.do",                //请求url
+        type:"POST",                              //请求类型
+        data:JSON.stringify(user),                //请求数据
+        contentType:"application/json",           //请求数据json
+        async: true,
+        error:function(){//请求失败
+            objtip.text("登陆失败！");
+        },
+        success:function (data) {
+            //请求成功
+            if (data.status===0){
+                window.location.href="view/main.jsp";//请求成功跳转界面
+            }
+            else {
+                objtip.text(data.msg);
+            }
+        }
+    });
+}
