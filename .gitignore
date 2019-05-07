@@ -4,4 +4,18 @@
 /.idea/
 
 
+#target
+/target/
 
+
+#src/resources/database.properties文件   src/resources/rebel.xml文件
+/src/main/resources/database.properties
+/src/main/resources/rebel.xml
+
+
+#dx21601.iml文件
+/dx21601.iml
+
+
+#pom.xml文件
+/pom.xml
