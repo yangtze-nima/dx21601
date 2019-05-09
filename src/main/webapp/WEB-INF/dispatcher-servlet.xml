@@ -10,15 +10,16 @@
 
     <context:component-scan base-package="com.dx21601" annotation-config="true"/>
     <mvc:annotation-driven />
-    <!--<mvc:interceptors>-->
-        <!--<mvc:interceptor>-->
-            <!--<mvc:mapping path="/**"/>-->
-            <!--<mvc:exclude-mapping path="/student/login.do"/>-->
-            <!--&lt;!&ndash;<mvc:exclude-mapping path="/user/register.do"/>&ndash;&gt;-->
-            <!--&lt;!&ndash;<mvc:exclude-mapping path="/user/sendVerifyCode.do"/>&ndash;&gt;-->
-            <!--<bean class="com.dx21601.common.LoginInterceptor"/>-->
-        <!--</mvc:interceptor>-->
-    <!--</mvc:interceptors>-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!-- 需拦截的地址 -->
+            <mvc:mapping path="/**"/>
+            <!-- 需排除拦截的地址 -->
+            <mvc:exclude-mapping path="../login.jsp"/>
+            <mvc:exclude-mapping path="/student/login.do"/>
+            <bean class="com.dx21601.common.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
           p:prefix="/WEB-INF/jsp/" p:suffix=".jsp"/>
     <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">

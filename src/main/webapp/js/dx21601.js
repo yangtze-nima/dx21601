@@ -116,12 +116,19 @@ function login() {
 
 //主页面所有事件
 function mainPage() {
-    hoursLocation();
+    $("#hSid").ready(function () {
+        hoursLocation();//获取学生信息
+        allStudent();//获取所有学生student信息
+    });
+    $("#main_student_table").ready(function () {
+        allHours();//获取所有Hours学生信息
+        allDrom();//获取所有宿舍信息
+    })
 }
 
 //获取学生信息
 function hoursLocation() {
-    var hSid =$("#hSid").text();
+    var hSid =$("#main_hSid_a").text();
     $.ajax({
         url: "../hours/hoursLocation.do",         //请求url
         type: "POST",                              //请求类型
@@ -131,10 +138,101 @@ function hoursLocation() {
         success: function (data) {
             //请求成功
             if (data.status === 0) {
+                var location=data.data.hShengfen+data.data.hCity+data.data.hXiangxi;//家庭住址
+                $("#main_location_a").html(location);//个main页面标签<a>赋值
+                $("#main_login_h1").html("登陆成功！");
             }
             else {
             }
         }
     });
 
+}
+
+//获取所有学生student信息
+function allStudent() {
+    $.ajax({
+        url: "../student/allStudent.do",           //请求url
+        type: "POST",                              //请求类型
+        error: function () {//请求失败
+        },
+        success: function (data) {
+            //请求成功
+            if (data.status === 0) {
+                $.each(data.data, function (i, item) {
+                    var str="";
+                    str="<tr>" +
+                        "<td>" + i + "</td>" +
+                        "<td>" + item.sName+ "</td>" +
+                        "<td>" + item.sSid+ "</td>" +
+                        "<td>" + item.sSex+ "</td>" +
+                        "<td>" + item.sNumber+ "</td>" +
+                        "<td>" + item.sBirthday+ "</td>" +
+                        "<td>" + item.sSushehao+ "</td>" +
+                        "<td>"+"<a href=''>"+"修改"+"</a>"+"</td>"
+                        "</tr>"
+                    $("#main_student_table").append(str);
+                });
+            }
+            else {
+            }
+        }
+    });
+}
+
+//获取所有Hours学生信息
+function allHours() {
+    $.ajax({
+        url: "../hours/allHours.do",           //请求url
+        type: "POST",                              //请求类型
+        error: function () {//请求失败
+        },
+        success: function (data) {
+            //请求成功
+            if (data.status === 0) {
+                $.each(data.data, function (i, item) {
+                    var str="";
+                    var j=i+1;
+                    var name = $("#main_student_table tr:eq(" + j + ") td:eq(1)").html();//获取student表格中姓名
+                    str="<tr>" +
+                        "<td>" + i + "</td>" +
+                        "<td>" + name+ "</td>" +
+                        "<td>" + item.hSid+ "</td>" +
+                        "<td>" + item.hShengfen+item.hCity+item.hXiangxi+"</td>" +
+                        "<td>"+"<a href=''>"+"修改"+"</a>"+"</td>"
+                    "</tr>"
+                    $("#main_hours_table").append(str);
+                });
+            }
+            else {
+            }
+        }
+    });
+}
+
+//获取所有宿舍信息
+function allDrom() {
+    $.ajax({
+        url: "../drom/allDrom.do",           //请求url
+        type: "POST",                              //请求类型
+        error: function () {//请求失败
+        },
+        success: function (data) {
+            //请求成功
+            if (data.status === 0) {
+                $.each(data.data, function (i, item) {
+                    var str="";
+                    str="<tr>" +
+                        "<td>" + i + "</td>" +
+                        "<td>" + item.dId+ "</td>" +
+                        "<td>" + item.dSum+"</td>" +
+                        "<td>"+"<a href=''>"+"修改"+"</a>"+"</td>"
+                    "</tr>"
+                    $("#main_drom_table").append(str);
+                });
+            }
+            else {
+            }
+        }
+    });
 }
