@@ -5,7 +5,7 @@
 
 
 #target
-/target/
+target/
 
 
 #src/resources/database.properties文件   src/resources/rebel.xml文件
