@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import javax.xml.crypto.Data;
+import java.util.Date;
+import java.util.List;
 
 @Controller
 @RequestMapping("/student/")
@@ -26,9 +29,48 @@ public class StudentController {
         String password=student.getsPassword() ;
         ServerResponse serverResponse = iStudentService.login(username, password);
         if (serverResponse.isSuccess()){
-            session.setAttribute("user",serverResponse.getData());
+            session.setAttribute("student",serverResponse.getData());//将数据存入session 供前台页面使用用法 ${student.sSid}
             return serverResponse;
         }
         return  serverResponse;
+    }
+
+    //获取所有学生信息
+    @RequestMapping(value = "/allStudent", method = RequestMethod.POST)
+    @ResponseBody
+    public ServerResponse<List<Student>> allStudent(HttpSession session){
+        ServerResponse<List<Student>> serverResponse=iStudentService.allStudent();
+        if (serverResponse.isSuccess()){
+            session.setAttribute("allStudent",serverResponse.getData());//将数据存入session 供前台页面使用用法 ${student.sSid}
+            return serverResponse;
+        }
+        return serverResponse;
+    }
+
+    //修改密码
+    @RequestMapping(value = "/updatePsd")
+    @ResponseBody
+    public ServerResponse updatePsd(String sSid,String sPassword,String newPassword){
+        return iStudentService.updatePsd(sSid,sPassword,newPassword);
+    }
+
+    //修改个人信息，包括手机号，出生日期，宿舍号
+    @RequestMapping(value = "/updateInfor")
+    @ResponseBody
+    public ServerResponse updateInfor(@RequestBody Student student){
+        String sSid=student.getsSid();
+        String sNumber=student.getsNumber();
+        Date sBirthday=student.getsBirthday();
+        String sSushehao=student.getsSushehao();
+        ServerResponse serverResponse=iStudentService.updateInfor(sSid,sNumber,sBirthday,sSushehao);
+        return serverResponse;
+    }
+
+    //退出登录
+    @RequestMapping("/loginOut")
+    @ResponseBody
+    public ServerResponse loginOut( HttpSession session){
+        session.removeAttribute("student");
+        return ServerResponse.createBySuccessMessage("退出成功！");
     }
 }

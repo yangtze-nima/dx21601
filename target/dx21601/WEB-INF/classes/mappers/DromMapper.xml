@@ -16,7 +16,7 @@
     from drom
     where d_id = #{dId,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from drom
     where d_id = #{dId,jdbcType=VARCHAR}
   </delete>
@@ -57,4 +57,9 @@
     set d_sum = #{dSum,jdbcType=INTEGER}
     where d_id = #{dId,jdbcType=VARCHAR}
   </update>
+  <select id="allDrom" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+     from drom
+  </select>
 </mapper>

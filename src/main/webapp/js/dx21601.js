@@ -1,5 +1,7 @@
+
+
 //图片轮播图
-$(function(){
+function loadMage(){
     $(".screenbg ul li").each(function(){
         $(this).css("opacity","0");
     });
@@ -26,16 +28,25 @@ $(function(){
     //根据窗口宽度生成图片宽度
     var width = $(window).width();
     $(".screenbg ul img").css("width",width+"px");
-});
+};
 
-$(function(){
-    /*学生登录信息验证*/
+//登陆页面所有事件 表单验证
+function loginPage(){
+    loadMage();
+    /**
+    *学号信息验证
+    *  focus  元素获得焦点
+    * */
     $("#stu_username_hide").focus(function(){
         var username = $(this).val();
         if(username=='输入学号'){
             $(this).val('');
         }
     });
+
+    /**
+    *focusout 元素失去焦点
+    * */
     $("#stu_username_hide").focusout(function(){
         var username = $(this).val();
         if(username==''){
@@ -54,6 +65,10 @@ $(function(){
             $(this).val('输入密码');
         }
     });
+
+    /**
+     * 表单验证插件 Validform
+     * */
     $(".stu_login_error").Validform({
         tiptype:function(msg,o,cssctl){
             var objtip=$(".stu_error_box");
@@ -61,10 +76,14 @@ $(function(){
             objtip.text(msg);
         }
     });
+
+    /**
+     * 元素点击事件
+     * **/
     $("#login_btn").click(function () {
         login();
     });
-});
+};
 
 //登陆请求
 function login() {
@@ -76,7 +95,7 @@ function login() {
     $.ajax({
         url:"../student/login.do",                //请求url
         type:"POST",                              //请求类型
-        data:JSON.stringify(user),                //请求数据
+        data:JSON.stringify(user),                //类对象的请求数据方式
         contentType:"application/json",           //请求数据json
         async: true,
         error:function(){//请求失败
@@ -92,4 +111,30 @@ function login() {
             }
         }
     });
+}
+
+
+//主页面所有事件
+function mainPage() {
+    hoursLocation();
+}
+
+//获取学生信息
+function hoursLocation() {
+    var hSid =$("#hSid").text();
+    $.ajax({
+        url: "../hours/hoursLocation.do",         //请求url
+        type: "POST",                              //请求类型
+        data: {"hSid": hSid},                       //单数据类型的 请求数据方式
+        error: function () {//请求失败
+        },
+        success: function (data) {
+            //请求成功
+            if (data.status === 0) {
+            }
+            else {
+            }
+        }
+    });
+
 }

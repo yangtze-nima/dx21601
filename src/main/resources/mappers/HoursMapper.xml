@@ -21,7 +21,7 @@
     from hours
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from hours
     where id = #{id,jdbcType=INTEGER}
   </delete>
@@ -115,5 +115,22 @@
       h_jingdu = #{hJingdu,jdbcType=VARCHAR},
       h_weidu = #{hWeidu,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByhSid" resultMap="BaseResultMap" parameterType="string">
+    select
+    <include refid="Base_Column_List" />
+    from hours
+    where h_sid=#{hSid}
+  </select>
+    <select id="allHours" resultMap="BaseResultMap">
+      select
+      <include refid="Base_Column_List" />
+      from hours;
+    </select>
+  <update id="updateLatitude">
+    update hours
+    set h_jingdu=#{hJingdu},
+    h_weidu=#{hWeidu}
+    where h_sid=#{hSid}
   </update>
 </mapper>

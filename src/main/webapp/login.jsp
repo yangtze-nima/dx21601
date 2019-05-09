@@ -10,8 +10,12 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery/jquery.SuperSlide.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery/Validform_v5.3.2.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/dx21601.js"></script>
+    <script>
+        $(function() {
+            loginPage();
+        });
+    </script>
 </head>
-
 <body>
 <div id="tab">
     <div class="tab_box">
