@@ -18,4 +18,6 @@
 
 
 #pom.xml文件
-/pom.xml
+/pom.xmlworkspace
+.project
+.classpath

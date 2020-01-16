@@ -1,31 +1,31 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.dx21601.dao.HoursMapper">
-  <resultMap id="BaseResultMap" type="com.dx21601.pojo.Hours">
-    <constructor>
-      <idArg column="h_sid" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="h_name" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="h_shengfen" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="h_city" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="h_xiangxi" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="h_jingdu" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="h_weidu" javaType="java.lang.String" jdbcType="VARCHAR" />
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dx21601.dao.HoursMapper" >
+  <resultMap id="BaseResultMap" type="com.dx21601.pojo.Hours" >
+    <constructor >
+      <idArg column="h_sid" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="h_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="h_shengfen" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="h_city" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="h_xiangxi" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="h_jingdu" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="h_weidu" jdbcType="VARCHAR" javaType="java.lang.String" />
     </constructor>
   </resultMap>
-  <sql id="Base_Column_List">
+  <sql id="Base_Column_List" >
     h_sid, h_name, h_shengfen, h_city, h_xiangxi, h_jingdu, h_weidu
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
     from hours
     where h_sid = #{hSid,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from hours
     where h_sid = #{hSid,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.dx21601.pojo.Hours">
+  <insert id="insert" parameterType="com.dx21601.pojo.Hours" >
     insert into hours (h_sid, h_name, h_shengfen, 
       h_city, h_xiangxi, h_jingdu, 
       h_weidu)
@@ -33,80 +33,80 @@
       #{hCity,jdbcType=VARCHAR}, #{hXiangxi,jdbcType=VARCHAR}, #{hJingdu,jdbcType=VARCHAR}, 
       #{hWeidu,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.dx21601.pojo.Hours">
+  <insert id="insertSelective" parameterType="com.dx21601.pojo.Hours" >
     insert into hours
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="hSid != null">
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="hSid != null" >
         h_sid,
       </if>
-      <if test="hName != null">
+      <if test="hName != null" >
         h_name,
       </if>
-      <if test="hShengfen != null">
+      <if test="hShengfen != null" >
         h_shengfen,
       </if>
-      <if test="hCity != null">
+      <if test="hCity != null" >
         h_city,
       </if>
-      <if test="hXiangxi != null">
+      <if test="hXiangxi != null" >
         h_xiangxi,
       </if>
-      <if test="hJingdu != null">
+      <if test="hJingdu != null" >
         h_jingdu,
       </if>
-      <if test="hWeidu != null">
+      <if test="hWeidu != null" >
         h_weidu,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="hSid != null">
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="hSid != null" >
         #{hSid,jdbcType=VARCHAR},
       </if>
-      <if test="hName != null">
+      <if test="hName != null" >
         #{hName,jdbcType=VARCHAR},
       </if>
-      <if test="hShengfen != null">
+      <if test="hShengfen != null" >
         #{hShengfen,jdbcType=VARCHAR},
       </if>
-      <if test="hCity != null">
+      <if test="hCity != null" >
         #{hCity,jdbcType=VARCHAR},
       </if>
-      <if test="hXiangxi != null">
+      <if test="hXiangxi != null" >
         #{hXiangxi,jdbcType=VARCHAR},
       </if>
-      <if test="hJingdu != null">
+      <if test="hJingdu != null" >
         #{hJingdu,jdbcType=VARCHAR},
       </if>
-      <if test="hWeidu != null">
+      <if test="hWeidu != null" >
         #{hWeidu,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.dx21601.pojo.Hours">
+  <update id="updateByPrimaryKeySelective" parameterType="com.dx21601.pojo.Hours" >
     update hours
-    <set>
-      <if test="hName != null">
+    <set >
+      <if test="hName != null" >
         h_name = #{hName,jdbcType=VARCHAR},
       </if>
-      <if test="hShengfen != null">
+      <if test="hShengfen != null" >
         h_shengfen = #{hShengfen,jdbcType=VARCHAR},
       </if>
-      <if test="hCity != null">
+      <if test="hCity != null" >
         h_city = #{hCity,jdbcType=VARCHAR},
       </if>
-      <if test="hXiangxi != null">
+      <if test="hXiangxi != null" >
         h_xiangxi = #{hXiangxi,jdbcType=VARCHAR},
       </if>
-      <if test="hJingdu != null">
+      <if test="hJingdu != null" >
         h_jingdu = #{hJingdu,jdbcType=VARCHAR},
       </if>
-      <if test="hWeidu != null">
+      <if test="hWeidu != null" >
         h_weidu = #{hWeidu,jdbcType=VARCHAR},
       </if>
     </set>
     where h_sid = #{hSid,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.dx21601.pojo.Hours">
+  <update id="updateByPrimaryKey" parameterType="com.dx21601.pojo.Hours" >
     update hours
     set h_name = #{hName,jdbcType=VARCHAR},
       h_shengfen = #{hShengfen,jdbcType=VARCHAR},
@@ -116,133 +116,18 @@
       h_weidu = #{hWeidu,jdbcType=VARCHAR}
     where h_sid = #{hSid,jdbcType=VARCHAR}
   </update>
-    <resultMap id="BaseResultMap" type="com.dx21601.pojo.Hours">
-        <constructor>
-            <idArg column="h_sid" javaType="java.lang.String" jdbcType="VARCHAR" />
-            <arg column="h_name" javaType="java.lang.String" jdbcType="VARCHAR" />
-            <arg column="h_shengfen" javaType="java.lang.String" jdbcType="VARCHAR" />
-            <arg column="h_city" javaType="java.lang.String" jdbcType="VARCHAR" />
-            <arg column="h_xiangxi" javaType="java.lang.String" jdbcType="VARCHAR" />
-            <arg column="h_jingdu" javaType="java.lang.String" jdbcType="VARCHAR" />
-            <arg column="h_weidu" javaType="java.lang.String" jdbcType="VARCHAR" />
-        </constructor>
-    </resultMap>
-    <sql id="Base_Column_List">
-        h_sid, h_name, h_shengfen, h_city, h_xiangxi, h_jingdu, h_weidu
-    </sql>
-    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List" />
-        from hours
-        where h_sid = #{hSid,jdbcType=VARCHAR}
-    </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-        delete from hours
-        where h_sid = #{hSid,jdbcType=VARCHAR}
-    </delete>
-    <insert id="insert" parameterType="com.dx21601.pojo.Hours">
-        insert into hours (h_sid, h_name, h_shengfen,
-        h_city, h_xiangxi, h_jingdu,
-        h_weidu)
-        values (#{hSid,jdbcType=VARCHAR}, #{hName,jdbcType=VARCHAR}, #{hShengfen,jdbcType=VARCHAR},
-        #{hCity,jdbcType=VARCHAR}, #{hXiangxi,jdbcType=VARCHAR}, #{hJingdu,jdbcType=VARCHAR},
-        #{hWeidu,jdbcType=VARCHAR})
-    </insert>
-    <insert id="insertSelective" parameterType="com.dx21601.pojo.Hours">
-        insert into hours
-        <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="hSid != null">
-                h_sid,
-            </if>
-            <if test="hName != null">
-                h_name,
-            </if>
-            <if test="hShengfen != null">
-                h_shengfen,
-            </if>
-            <if test="hCity != null">
-                h_city,
-            </if>
-            <if test="hXiangxi != null">
-                h_xiangxi,
-            </if>
-            <if test="hJingdu != null">
-                h_jingdu,
-            </if>
-            <if test="hWeidu != null">
-                h_weidu,
-            </if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="hSid != null">
-                #{hSid,jdbcType=VARCHAR},
-            </if>
-            <if test="hName != null">
-                #{hName,jdbcType=VARCHAR},
-            </if>
-            <if test="hShengfen != null">
-                #{hShengfen,jdbcType=VARCHAR},
-            </if>
-            <if test="hCity != null">
-                #{hCity,jdbcType=VARCHAR},
-            </if>
-            <if test="hXiangxi != null">
-                #{hXiangxi,jdbcType=VARCHAR},
-            </if>
-            <if test="hJingdu != null">
-                #{hJingdu,jdbcType=VARCHAR},
-            </if>
-            <if test="hWeidu != null">
-                #{hWeidu,jdbcType=VARCHAR},
-            </if>
-        </trim>
-    </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.dx21601.pojo.Hours">
-        update hours
-        <set>
-            <if test="hName != null">
-                h_name = #{hName,jdbcType=VARCHAR},
-            </if>
-            <if test="hShengfen != null">
-                h_shengfen = #{hShengfen,jdbcType=VARCHAR},
-            </if>
-            <if test="hCity != null">
-                h_city = #{hCity,jdbcType=VARCHAR},
-            </if>
-            <if test="hXiangxi != null">
-                h_xiangxi = #{hXiangxi,jdbcType=VARCHAR},
-            </if>
-            <if test="hJingdu != null">
-                h_jingdu = #{hJingdu,jdbcType=VARCHAR},
-            </if>
-            <if test="hWeidu != null">
-                h_weidu = #{hWeidu,jdbcType=VARCHAR},
-            </if>
-        </set>
-        where h_sid = #{hSid,jdbcType=VARCHAR}
-    </update>
-    <update id="updateByPrimaryKey" parameterType="com.dx21601.pojo.Hours">
-        update hours
-        set h_name = #{hName,jdbcType=VARCHAR},
-        h_shengfen = #{hShengfen,jdbcType=VARCHAR},
-        h_city = #{hCity,jdbcType=VARCHAR},
-        h_xiangxi = #{hXiangxi,jdbcType=VARCHAR},
-        h_jingdu = #{hJingdu,jdbcType=VARCHAR},
-        h_weidu = #{hWeidu,jdbcType=VARCHAR}
-        where h_sid = #{hSid,jdbcType=VARCHAR}
-    </update>
-    <select id="selectByhSid" parameterType="string" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List" />
-        from hours
-        where h_sid=#{hSid}
-    </select>
-    <select id="allHours" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List" />
-        from hours;
-    </select>
-    <update id="updateLatitude">
+  <select id="selectByhSid" parameterType="string" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from hours
+    where h_sid=#{hSid}
+  </select>
+  <select id="allHours" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from hours;
+  </select>
+  <update id="updateLatitude">
         update hours
         set h_jingdu=#{hJingdu},
         h_weidu=#{hWeidu}

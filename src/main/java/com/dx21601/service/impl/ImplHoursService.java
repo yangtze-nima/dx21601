@@ -37,7 +37,7 @@ public class ImplHoursService implements IHoursService {
     //修改经纬度
     @Override
     public ServerResponse updateLatitude(String hSid, String hJingdu, String hWeidu) {
-        int a = hoursMapper.updateLatitude(hSid, hJingdu, hJingdu);
+        int a = hoursMapper.updateLatitude(hSid, hJingdu, hWeidu);
         if (a == 0) {
             ServerResponse.createByErrorMessage("修改失败！");
         }
