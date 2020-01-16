@@ -1,5 +1,5 @@
-layui.use('layer', function () {
-});
+// layui.use('layer', function () {
+// });
 
 //图片轮播图
 function loadMage() {
