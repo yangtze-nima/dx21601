@@ -11,7 +11,7 @@ public interface IStudentService {
     ServerResponse<Student> login(String sSid, String sPassword);
 
     //修改密码
-    ServerResponse<Student> updatePsd(String sSid,String sPassword,String newPassword);
+    ServerResponse<Student> updatePsd(String sSid, String sPassword, String newPassword);
 
     //所有学生信息
     ServerResponse<List<Student>> allStudent();

@@ -17,8 +17,8 @@ public class ImplDromService implements IDromService {
     //获取所有宿舍信息
     @Override
     public ServerResponse<List<Drom>> allDrom() {
-        List<Drom> dromList=dromMapper.allDrom();
-        if (dromList==null){
+        List<Drom> dromList = dromMapper.allDrom();
+        if (dromList == null) {
             return ServerResponse.createByErrorMessage("无数据！");
         }
         return ServerResponse.createBySuccess(dromList);

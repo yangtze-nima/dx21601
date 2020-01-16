@@ -13,5 +13,5 @@ public interface IHoursService {
     ServerResponse<List<Hours>> allHours();
 
     //修改经纬度
-    ServerResponse updateLatitude(String hSid,String hJingdu,String hWeidu);
+    ServerResponse updateLatitude(String hSid, String hJingdu, String hWeidu);
 }

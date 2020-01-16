@@ -21,10 +21,10 @@ public class DromController {
     //获取所有宿舍信息
     @RequestMapping(value = "/allDrom", method = RequestMethod.POST)
     @ResponseBody
-    public ServerResponse<List<Drom>> allDrom(HttpSession session){
-        ServerResponse<List<Drom>> serverResponse=iDromService.allDrom();
-        if (serverResponse.isSuccess()){
-            session.setAttribute("allDrom",serverResponse.getData());
+    public ServerResponse<List<Drom>> allDrom(HttpSession session) {
+        ServerResponse<List<Drom>> serverResponse = iDromService.allDrom();
+        if (serverResponse.isSuccess()) {
+            session.setAttribute("allDrom", serverResponse.getData());
             return serverResponse;
         }
         return serverResponse;

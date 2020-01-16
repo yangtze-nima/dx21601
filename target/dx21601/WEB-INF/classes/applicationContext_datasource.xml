@@ -68,21 +68,21 @@
     </bean>
 
     <!--mapperbean-->
-    <bean id="StudentMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <property name="mapperInterface" value="com.dx21601.dao.StudentMapper" />
-        <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+    <bean id="dromMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.dx21601.dao.DromMapper"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
     </bean>
-    <bean id="HoursMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <property name="mapperInterface" value="com.dx21601.dao.HoursMapper" />
-        <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+    <bean id="hoursMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.dx21601.dao.HoursMapper"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
     </bean>
-    <bean id="DromMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <property name="mapperInterface" value="com.dx21601.dao.DromMapper" />
-        <property name="sqlSessionFactory" ref="sqlSessionFactory" />
+    <bean id="studentMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="com.dx21601.dao.StudentMapper"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
     </bean>
     <!--事物管理器-->
     <bean id="transaction" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource"  ref="dataSource"/>
+        <property name="dataSource" ref="dataSource"/>
         <property name="rollbackOnCommitFailure" value="true"/>
     </bean>
 </beans>

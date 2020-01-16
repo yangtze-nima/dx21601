@@ -1,9 +1,9 @@
 package com.dx21601.pojo;
 
 public class Hours {
-    private Integer id;
-
     private String hSid;
+
+    private String hName;
 
     private String hShengfen;
 
@@ -15,9 +15,9 @@ public class Hours {
 
     private String hWeidu;
 
-    public Hours(Integer id, String hSid, String hShengfen, String hCity, String hXiangxi, String hJingdu, String hWeidu) {
-        this.id = id;
+    public Hours(String hSid, String hName, String hShengfen, String hCity, String hXiangxi, String hJingdu, String hWeidu) {
         this.hSid = hSid;
+        this.hName = hName;
         this.hShengfen = hShengfen;
         this.hCity = hCity;
         this.hXiangxi = hXiangxi;
@@ -29,20 +29,20 @@ public class Hours {
         super();
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public String gethSid() {
         return hSid;
     }
 
     public void sethSid(String hSid) {
         this.hSid = hSid == null ? null : hSid.trim();
+    }
+
+    public String gethName() {
+        return hName;
+    }
+
+    public void sethName(String hName) {
+        this.hName = hName == null ? null : hName.trim();
     }
 
     public String gethShengfen() {

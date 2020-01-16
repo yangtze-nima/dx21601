@@ -23,10 +23,10 @@ public class HoursController {
     //通过学号获取个人地址信息
     @RequestMapping(value = "/hoursLocation", method = RequestMethod.POST)
     @ResponseBody
-    public ServerResponse HoursLocation(String hSid, HttpSession session){
-        ServerResponse serverResponse=iHoursService.location(hSid);
-        if (serverResponse.isSuccess()){
-            session.setAttribute("hours",serverResponse.getData());
+    public ServerResponse HoursLocation(String hSid, HttpSession session) {
+        ServerResponse serverResponse = iHoursService.location(hSid);
+        if (serverResponse.isSuccess()) {
+            session.setAttribute("hours", serverResponse.getData());
             return serverResponse;
         }
         return serverResponse;
@@ -35,10 +35,10 @@ public class HoursController {
     //获取所有住址信息
     @RequestMapping(value = "/allHours", method = RequestMethod.POST)
     @ResponseBody
-    public ServerResponse<List<Hours>> allHours(HttpSession session){
-        ServerResponse<List<Hours>> serverResponse=iHoursService.allHours();
-        if (serverResponse.isSuccess()){
-            session.setAttribute("allHours",serverResponse.getData());
+    public ServerResponse<List<Hours>> allHours(HttpSession session) {
+        ServerResponse<List<Hours>> serverResponse = iHoursService.allHours();
+        if (serverResponse.isSuccess()) {
+            session.setAttribute("allHours", serverResponse.getData());
             return serverResponse;
         }
         return serverResponse;
@@ -47,10 +47,10 @@ public class HoursController {
     //修改经纬度
     @RequestMapping(value = "/updateLatitude")
     @ResponseBody
-    public ServerResponse updateLatitude(@RequestBody Hours hours){
-        String hSid=hours.gethSid();
-        String hJingdu=hours.gethJingdu();
-        String hWeidu=hours.gethWeidu();
-        return iHoursService.updateLatitude(hSid,hJingdu,hWeidu);
+    public ServerResponse updateLatitude(@RequestBody Hours hours) {
+        String hSid = hours.gethSid();
+        String hJingdu = hours.gethJingdu();
+        String hWeidu = hours.gethWeidu();
+        return iHoursService.updateLatitude(hSid, hJingdu, hWeidu);
     }
 }
